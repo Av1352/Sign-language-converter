@@ -5,7 +5,6 @@ import mediapipe as mp
 import numpy as np
 import pandas as pd
 
-
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D
@@ -109,7 +108,7 @@ def model_predict():
 
     model.add(Dense(64, activation='relu'))
     model.add(Dense(41, activation='softmax'))
-    model.load_weights('Models/model_93.h5')
+    model.load_weights('model.h5')
     print("Loaded model from disk")    
     
     show_text = [0]
@@ -156,15 +155,16 @@ def model_predict():
             40 : 'Z'}
 
     
-    prediction = model.predict_on_batch(image)
-    global maxindex
-    maxindex = int(np.argmax(prediction))
-    show_text[0] = maxindex
+    prediction = model.predict(image)
+    print(prediction)
+    # global maxindex
+    # maxindex = int(np.argmax(prediction))
+    # show_text[0] = maxindex
 
-    print("dict: ",dict[maxindex])
-    global hand
-    hand = dict[maxindex]
-    print("Hand", hand)
+    # print("dict: ",dict[maxindex])
+    # global hand
+    # hand = dict[maxindex]
+    # print("Hand", hand)
     
 
 def main():
